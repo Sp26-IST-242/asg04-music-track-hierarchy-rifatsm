@@ -13,8 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: test_music.py
-      id: test_music-py
+    - name: test_music
+      id: test_music
       uses: classroom-resources/autograding-python-grader@v1
       with:
         timeout: 10
@@ -22,6 +22,6 @@ jobs:
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        TEST_MUSIC-PY_RESULTS: "${{steps.test_music-py.outputs.result}}"
+        TEST_MUSIC_RESULTS: "${{steps.test_music.outputs.result}}"
       with:
-        runners: test_music-py
+        runners: test_music
