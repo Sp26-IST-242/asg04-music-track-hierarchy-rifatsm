@@ -13,15 +13,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: test_music
-      id: test_music
+    - name: test_music.py
+      id: test_music-py
       uses: classroom-resources/autograding-python-grader@v1
       with:
         timeout: 10
-        setup-command: ''
+        max-score: 100
+        setup-command: sudo -H pip install pytest
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        TEST_MUSIC_RESULTS: "${{steps.test_music.outputs.result}}"
+        TEST_MUSIC-PY_RESULTS: "${{steps.test_music-py.outputs.result}}"
       with:
-        runners: test_music
+        runners: test_music-py
